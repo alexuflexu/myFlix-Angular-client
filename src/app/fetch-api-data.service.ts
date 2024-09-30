@@ -21,38 +21,38 @@ export class FetchAPIDataService {
     );
   }
 
-  // User login
-  public userLogin(username: string, password: string): void {}
+// User login
+public userLogin(username: string, password: string): void {}
 
-  // Get all movies
-  public getAllMovies(): void {}
+// Get all movies
+public getAllMovies(): void {}
 
-  // Get one movie by title
-  public getOneMovie(title: string): void {}
+// Get one movie by title
+public getOneMovie(title: string): void {}
 
-  // Get director by name
-  public getDirector(name: string): void {}
+// Get director by name
+public getDirector(directorName: string): void {}
 
-  // Get genre by name
-  public getGenre(name: string): void {}
+// Get genre by name
+public getGenre(genreName: string): void {}
 
-  // Get user by username
-  public getUser(username: string): void {}
+// Get user by username
+public getUser(username: string): void {}
 
-  // Get favorite movies for a user
-  public getFavoriteMovies(username: string): void {}
+// Get favorite movies for a user
+public getFavoriteMovies(username: string): void {}
 
-  // Add a movie to favorite movies
-  public addFavoriteMovie(username: string, movieId: string): void {}
+// Add a movie to favorite movies
+public addFavoriteMovie(username: string, movieId: string): void {}
 
-  // Edit user
-  public editUser(userDetails: any): void {}
+// Edit user
+public editUser(username: string, userDetails: any): void {}
 
-  // Delete user by username
-  public deleteUser(username: string): void {}
+// Delete user by username
+public deleteUser(username: string): void {}
 
-  // Delete a movie from favorite movies
-  public deleteFavoriteMovie(username: string, movieId: string): void {}
+// Delete a movie from favorite movies
+public deleteFavoriteMovie(username: string, movieId: string): void {}
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
