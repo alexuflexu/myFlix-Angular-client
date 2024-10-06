@@ -5,15 +5,18 @@
             <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
         </mat-card-header>
-        <img src="{{movie.ImagePath}}" alt="{{movie.Title}}" />
+        <img src="{{movie.ImagePath}}" alt="{{movie.Title}}" (click)="navigateToMovie(movie.Title)" style="cursor: pointer;" />
         <mat-card-actions>
-            <button mat-button color="primary" (click)="showGenre(movie)">Genre</button>
-            <button mat-button color="primary">Director</button>
-            <button mat-button color="primary">Synopsis</button>
             <mat-icon (click)="toggleFavorite(movie._id)" 
                       [ngStyle]="{'color': favoriteMovies.includes(movie._id) ? 'goldenrod' : 'inherit'}">
                 favorite
             </mat-icon>
+            <span *ngIf="favoriteMovies.includes(movie._id); else notFavorited">
+                Remove from Favorites
+            </span>
+            <ng-template #notFavorited>
+                <span>Add to Favorites</span>
+            </ng-template>
         </mat-card-actions>
     </mat-card>
 </div>

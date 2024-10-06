@@ -20,11 +20,18 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MessageBoxComponent } from './message-box/message-box.component';
+import { SingleMovieComponent } from './single-movie/single-movie.component';
+import { DirectorViewComponent } from './director-view/director-view.component';
+import { GenreViewComponent } from './genre-view/genre-view.component';
+import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'movies/:title', component: SingleMovieComponent },
+  { path: 'director/:directorName', component: DirectorViewComponent },
+  { path: 'genre/:genreName', component: GenreViewComponent },
+  { path: 'synopsis/:title', component: SynopsisViewComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }
 ];
@@ -38,7 +45,10 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     UserProfileComponent,
     NavbarComponent,
-    MessageBoxComponent
+    SingleMovieComponent,
+    DirectorViewComponent,
+    GenreViewComponent,
+    SynopsisViewComponent
   ],
   imports: [
     BrowserModule,

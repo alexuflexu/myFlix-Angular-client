@@ -9,8 +9,8 @@
       <span *ngFor="let movie of userData.FavoriteMovies; let isLast = last">
         {{ movie.Title }}<span *ngIf="!isLast">, </span>
       </span>
-    </div>
-    <button mat-button (click)="editing = true">Edit Profile</button>
+    <div class="button-container">
+    <button mat-button class="edit-profile-button" (click)="editing = true">Edit Profile</button>
   </div>
 
   <div *ngIf="editing">

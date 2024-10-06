@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MessageBoxComponent } from './message-box.component';
+import { SingleMovieComponent } from './single-movie.component';
 
-describe('MessageBoxComponent', () => {
-  let component: MessageBoxComponent;
-  let fixture: ComponentFixture<MessageBoxComponent>;
+describe('SingleMovieComponent', () => {
+  let component: SingleMovieComponent;
+  let fixture: ComponentFixture<SingleMovieComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MessageBoxComponent]
+      declarations: [SingleMovieComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MessageBoxComponent);
+    fixture = TestBed.createComponent(SingleMovieComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

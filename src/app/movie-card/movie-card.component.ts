@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
-import { MessageBoxComponent } from '../message-box/message-box.component'; 
 
 @Component({
   selector: 'app-movie-card',
@@ -17,8 +15,7 @@ export class MovieCardComponent implements OnInit {
   constructor(
     private fetchApiData: FetchApiDataService,
     private router: Router,
-    private snackBar: MatSnackBar,
-    private dialog: MatDialog 
+    private snackBar: MatSnackBar 
   ) {}
 
   ngOnInit(): void {
@@ -39,11 +36,9 @@ export class MovieCardComponent implements OnInit {
   loadFavoriteMovies(): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (user && user.FavoriteMovies.length > 0) {
-      // TODO: Clean it up later
       this.favoriteMovies = user.FavoriteMovies;
       this.updateFavoriteStatus();
     }
-    console.log("Got Favorite Movies", this.favoriteMovies);
   }
 
   updateFavoriteStatus(): void {
@@ -61,10 +56,6 @@ export class MovieCardComponent implements OnInit {
         this.snackBar.open('Removed from favorites.', 'OK', {
           duration: 2000
         });
-      }, (error) => {
-        this.snackBar.open('Failed to remove from favorites.', 'OK', {
-          duration: 2000
-        });
       });
     } else {
       this.fetchApiData.addFavoriteMovie(user.Username, movieId).subscribe(() => {
@@ -73,53 +64,26 @@ export class MovieCardComponent implements OnInit {
         this.snackBar.open('Added to favorites.', 'OK', {
           duration: 2000
         });
-      }, (error) => {
-        this.snackBar.open('Failed to add to favorites.', 'OK', {
-          duration: 2000
-        });
       });
     }
     
     user.FavoriteMovies = this.favoriteMovies;
     localStorage.setItem('user', JSON.stringify(user));
   }
-  
+
+  navigateToMovie(title: string): void {
+    this.router.navigate(['/movies', title]);
+  }
+
   showGenre(movie: any): void {
-    const genreType = movie.genre ? String(movie.genre.name).toUpperCase() : 'Unknown Genre';
-    const genreDescription = movie.genre ? movie.genre.description : 'No description available.';
-    
-    this.dialog.open(MessageBoxComponent, {
-        data: {
-            title: genreType,
-            content: genreDescription
-        },
-        width: "400px"
-    });
+    this.router.navigate(['/genre', movie.Genre.Name]);
   }
 
   showDirector(movie: any): void {
-    const directorName = movie.director ? movie.director.name : 'Unknown Director';
-    
-    const directorDescription = movie.director ? movie.director.bio : 'No biography available.';
-    
-    this.dialog.open(MessageBoxComponent, {
-        data: {
-            title: directorName,
-            content: directorDescription
-        },
-        width: "400px"
-    });
+    this.router.navigate(['/director', movie.Director.Name]);
   }
 
   showDetail(movie: any): void {
-    const movieDescription = movie.description ? movie.description : 'No description available.';
-    
-    this.dialog.open(MessageBoxComponent, {
-        data: {
-            title: movie.title,
-            content: movieDescription
-        },
-        width: "400px"
-    });
+    this.router.navigate(['/synopsis', movie.Title]);
   }
 }

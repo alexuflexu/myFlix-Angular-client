@@ -9,38 +9,27 @@ body, html {
   font-family: 'Libre Baskerville', serif;
 }
 
-.user-profile {
-    font-family: 'Libre Baskerville', serif;
-    max-width: 400px;
-    margin: auto; 
-    padding: 20px;
-    background-color: #FFFFF0;
-    border: 1px solid rgb(218, 165, 32);
-    border-radius: 4px;
-    margin-top: 100px;
-  }
+mat-card {
+  max-width: 350px;
+  margin: auto;
+  padding: 20px;
+  background-color: #FFFFF0;
+  border: 1px solid goldenrod;
+  border-radius: 4px;
+}
 
-h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
+h1 {
+  font-size: 2rem;
   margin-bottom: 20px;
+  font-family: 'Libre Baskerville', serif;
 }
 
 p {
   margin-bottom: 10px;
-}
-
-mat-form-field {
-  width: 100%;
-  margin: 15px;
-}
-
-input {
   font-family: 'Libre Baskerville', serif;
 }
 
-.edit-profile-button {
+.custom-button {
   margin: 10px;
   color: darkgoldenrod;
   font-family: 'Libre Baskerville', serif;
@@ -51,13 +40,4 @@ input {
 button:hover {
   background-color: goldenrod!important;
   color: white;
-}
-
-.favorite-movies {
-  margin-top: 10px;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center;
 }
