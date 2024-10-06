@@ -1,0 +1,22 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.nav-bar {
+    height: 64px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+}
+
+.toolbar-title {
+    margin-left: 10px;
+    font-family: 'Libre Baskerville', serif;
+    color: #333;
+}
+
+.mat-toolbar {
+    background-color:rgba(218, 165, 32, 0.8);
+}

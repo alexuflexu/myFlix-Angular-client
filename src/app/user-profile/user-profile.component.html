@@ -1,0 +1,27 @@
+<div class="user-profile" *ngIf="userData">
+  <h2>User Profile</h2>
+  
+  <div *ngIf="!editing">
+    <p><strong>Username:</strong> {{ userData.Username }}</p>
+    <p><strong>Email:</strong> {{ userData.Email }}</p>
+    <p><strong>Favorite Movies:</strong></p>
+    <div class="favorite-movies">
+      <span *ngFor="let movie of userData.FavoriteMovies; let isLast = last">
+        {{ movie.Title }}<span *ngIf="!isLast">, </span>
+      </span>
+    </div>
+    <button mat-button (click)="editing = true">Edit Profile</button>
+  </div>
+
+  <div *ngIf="editing">
+    <mat-form-field>
+      <input matInput [(ngModel)]="userData.Username" placeholder="Username" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="userData.Email" placeholder="Email" />
+    </mat-form-field>
+    
+    <button mat-button (click)="saveProfile()">Save</button>
+    <button mat-button (click)="editing = false">Cancel</button>
+  </div>
+</div>
