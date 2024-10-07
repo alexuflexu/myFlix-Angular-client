@@ -42,4 +42,8 @@ export class SingleMovieComponent implements OnInit {
   viewGenre(genreName: string): void {
     this.router.navigate(['/genre', genreName]);
   }
+
+  goBackToMovies(): void {
+    this.router.navigate(['/movies']);
+  }
 }

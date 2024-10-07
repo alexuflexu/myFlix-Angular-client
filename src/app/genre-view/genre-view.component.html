@@ -1,4 +1,6 @@
-<div *ngIf="genre" style="margin-top: 70px; padding: 20px;">
-    <h1>{{genre.Name}}</h1>
-    <p>Description: {{genre.Description}}</p>
-</div>
+<mat-card *ngIf="genre" style="margin-top: 70px; padding: 20px; background-color: #FFFFF0; border: 1px solid goldenrod;">
+    <h1>{{ genre.Name }}</h1>
+    <p>Description: {{ genre.Description }}</p>
+
+    <button mat-button class="custom-button" (click)="goBackToMovies()">Back to Movies</button>
+</mat-card>

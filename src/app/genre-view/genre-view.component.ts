@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -14,7 +14,8 @@ export class GenreViewComponent implements OnInit {
   constructor(
     private fetchApiData: FetchApiDataService,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,5 +33,9 @@ export class GenreViewComponent implements OnInit {
         });
       });
     }
+  }
+
+  goBackToMovies(): void {
+    this.router.navigate(['/movies']); 
   }
 }

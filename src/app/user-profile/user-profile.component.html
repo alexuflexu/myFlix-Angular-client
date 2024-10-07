@@ -4,13 +4,29 @@
   <div *ngIf="!editing">
     <p><strong>Username:</strong> {{ userData.Username }}</p>
     <p><strong>Email:</strong> {{ userData.Email }}</p>
-    <p><strong>Favorite Movies:</strong></p>
-    <div class="favorite-movies">
-      <span *ngFor="let movie of userData.FavoriteMovies; let isLast = last">
-        {{ movie.Title }}<span *ngIf="!isLast">, </span>
-      </span>
+    
     <div class="button-container">
-    <button mat-button class="edit-profile-button" (click)="editing = true">Edit Profile</button>
+      <button mat-button class="edit-profile-button" (click)="editing = true">Edit Profile</button>
+    </div>
+
+    <div>
+      <p><strong>Favorite Movies:</strong></p>
+      <div class="favorite-movies">
+        <mat-card *ngFor="let movie of favoriteMovies; let isLast = last" style="margin: 0 0 20px 0;">
+          <mat-card-header>
+            <mat-card-title>{{movie.Title}}</mat-card-title>
+            <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+          </mat-card-header>
+          <img src="{{movie.ImagePath}}" alt="{{movie.Title}}" style="cursor: pointer;" />
+          <mat-card-actions>
+            <mat-icon (click)="toggleFavorite(movie._id)" style="color: goldenrod; cursor: pointer;">
+              favorite
+            </mat-icon>
+            <span>Remove from Favorites</span>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </div>
 
   <div *ngIf="editing">
@@ -20,8 +36,16 @@
     <mat-form-field>
       <input matInput [(ngModel)]="userData.Email" placeholder="Email" />
     </mat-form-field>
-    
+    <mat-form-field>
+      <input matInput [(ngModel)]="newPassword" type="password" placeholder="New Password" />
+    </mat-form-field>
+
     <button mat-button (click)="saveProfile()">Save</button>
     <button mat-button (click)="editing = false">Cancel</button>
+
+    <div>
+      <h3>Delete Account?</h3>
+      <button mat-button (click)="deleteUser()">Delete User</button>
+    </div>
   </div>
 </div>
