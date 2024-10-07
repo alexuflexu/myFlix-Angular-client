@@ -22,7 +22,7 @@ export class GenreViewComponent implements OnInit {
   }
 
   getGenreDetails(): void {
-    const genreName = this.route.snapshot.paramMap.get('name');
+    const genreName = this.route.snapshot.paramMap.get('genreName');
     if (genreName) {
       this.fetchApiData.getGenre(genreName).subscribe((resp: any) => {
         this.genre = resp;
