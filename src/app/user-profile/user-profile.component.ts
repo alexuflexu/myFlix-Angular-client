@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import moment from 'moment';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,7 +14,9 @@ export class UserProfileComponent implements OnInit {
   favoriteMovies: any[] = [];
   editing: boolean = false;
   newPassword: string = '';
-  birthday: string = '';
+  newBirthday: string = '';
+  newUsername: string = '';
+  newEmail: string = '';
 
   constructor(
     private fetchApiData: FetchApiDataService,
@@ -31,7 +34,10 @@ export class UserProfileComponent implements OnInit {
     if (this.userData.Username) {
       this.fetchApiData.getUser(this.userData.Username).subscribe((res) => {
         this.userData = res;
-        this.birthday = this.userData.Birthday;
+        this.newUsername = this.userData.Username;
+        this.newPassword = '';
+        this.newEmail = this.userData.Email;
+        this.newBirthday = moment(this.userData.Birthday).format('YYYY-MM-DD');
         this.getFavoriteMovies();
       }, (error) => {
         this.snackBar.open('Failed to fetch user profile.', 'OK', { duration: 2000 });
@@ -42,19 +48,25 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveProfile(): void {
-    if (this.userData.Username) {
-      const updatedData = {
-        Username: this.userData.Username,
-        Password: this.newPassword || this.userData.Password,
-        Email: this.userData.Email,
-        Birthday: this.birthday
+    if (this.userData.Username && this.newPassword) {
+      const updatedData: any = {
+        Username: this.newUsername, 
+        Email: this.newEmail,
+        Birthday: this.newBirthday,
+        Password: this.newPassword,
       };
-
+  
+      // Only add the Password field if a new password is provided
+      if (this.newPassword) {
+        updatedData.Password = this.newPassword;
+      }
+  
+      // Call the API to update the user profile
       this.fetchApiData.editUser(this.userData.Username, updatedData).subscribe((res) => {
         this.userData = {
           ...res,
           id: res._id,
-          password: this.newPassword || this.userData.Password
+          password: this.newPassword || this.userData.Password,
         };
         localStorage.setItem("user", JSON.stringify(this.userData));
         this.editing = false;
@@ -64,7 +76,7 @@ export class UserProfileComponent implements OnInit {
         this.snackBar.open('Failed to update profile. Please check your input.', 'OK', { duration: 2000 });
       });
     } else {
-      this.snackBar.open('No user logged in.', 'OK', { duration: 2000 });
+      this.snackBar.open('Password is mandatory!.', 'OK', { duration: 2000 });
     }
   }
 

@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="user-profile" *ngIf="userData">
   <h2>User Profile</h2>
   
@@ -31,13 +32,22 @@
 
   <div *ngIf="editing">
     <mat-form-field>
-      <input matInput [(ngModel)]="userData.Username" placeholder="Username" />
+      <input matInput [(ngModel)]="newUsername" placeholder="Current Username" />
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="userData.Email" placeholder="Email" />
+      <input matInput [(ngModel)]="newEmail" placeholder="Email" />
     </mat-form-field>
     <mat-form-field>
-      <input matInput [(ngModel)]="newPassword" type="password" placeholder="New Password" />
+      <input matInput [(ngModel)]="newPassword" type="password" placeholder="New Password" autocomplete="off" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [(ngModel)]="newBirthday"
+        type = "date"
+        placeholder="Birthday"  
+        name="Birthday"
+      >
     </mat-form-field>
 
     <button mat-button (click)="saveProfile()">Save</button>

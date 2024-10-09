@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +25,7 @@ import { SingleMovieComponent } from './single-movie/single-movie.component';
 import { DirectorViewComponent } from './director-view/director-view.component';
 import { GenreViewComponent } from './genre-view/genre-view.component';
 import { SynopsisViewComponent } from './synopsis-view/synopsis-view.component';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -58,6 +60,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatDialogModule,
     MatInputModule,
+    MatDatepicker,
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
@@ -65,7 +68,15 @@ const appRoutes: Routes = [
     MatIconModule,
     MatToolbarModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: MAT_DATE_FORMATS,
+    useValue: {
+        display: {
+            dateInput: 'YYYY-MM-DD',
+        },
+    },
+}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

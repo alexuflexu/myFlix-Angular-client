@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myFlix-Angular-client';
+  isLoggedIn = localStorage.getItem('token') ? true : false;
 }
