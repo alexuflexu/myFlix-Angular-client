@@ -23,13 +23,18 @@ export class UserProfileComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
+    // Initialize userData from local storage
     this.userData = JSON.parse(localStorage.getItem("user") || "{}");
   }
 
   ngOnInit(): void {
+    // Fetch user data when the component initializes
     this.getUser();
   }
 
+  /**
+   * Function to retrieve user data from the API
+   */
   getUser(): void {
     if (this.userData.Username) {
       this.fetchApiData.getUser(this.userData.Username).subscribe((res) => {
@@ -47,6 +52,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to save updated user profile information
+   */
   saveProfile(): void {
     if (this.userData.Username && this.newPassword) {
       const updatedData: any = {
@@ -80,6 +88,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to delete the user account
+   */
   deleteUser(): void {
     if (this.userData.Username) {
       this.fetchApiData.deleteUser(this.userData.Username).subscribe((res) => {
@@ -92,6 +103,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to toggle favorite status of a movie
+   */
   toggleFavorite(movieId: string): void {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     if (this.favoriteMovies.find(m => m._id === movieId)) {
@@ -106,6 +120,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to retrieve user's favorite movies from the API
+   */
   getFavoriteMovies(): void {
     if (this.userData.Username) {
       this.fetchApiData.getAllMovies().subscribe((movies) => {
@@ -116,14 +133,23 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to reset user data
+   */
   resetUser(): void {
     this.getUser();
   }
 
+  /**
+   * Function to refresh the page
+   */
   refresh(): void {
     window.location.reload();
   }
 
+  /**
+   * Function to log out the user
+   */
   logout(): void {
     localStorage.removeItem("user");
     this.router.navigate(["welcome"]);

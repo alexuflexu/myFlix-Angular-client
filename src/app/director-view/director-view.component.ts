@@ -22,6 +22,9 @@ export class DirectorViewComponent implements OnInit {
     this.getDirectorDetails();
   }
 
+  /**
+   * Function to fetch director details using FetchApiDataService
+   */
   getDirectorDetails(): void {
     const directorName = this.route.snapshot.paramMap.get('directorName');
     if (directorName) {
@@ -35,6 +38,9 @@ export class DirectorViewComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to navigate back to the movies page
+   */
   goBackToMovies(): void {
     this.router.navigate(['/movies']); 
   }

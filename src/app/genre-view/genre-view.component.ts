@@ -22,6 +22,9 @@ export class GenreViewComponent implements OnInit {
     this.getGenreDetails();
   }
 
+  /**
+   * Function to fetch genre details using FetchApiDataService
+   */
   getGenreDetails(): void {
     const genreName = this.route.snapshot.paramMap.get('genreName');
     if (genreName) {
@@ -35,6 +38,9 @@ export class GenreViewComponent implements OnInit {
     }
   }
 
+  /**
+   * Function to navigate back to the movies page
+   */
   goBackToMovies(): void {
     this.router.navigate(['/movies']); 
   }

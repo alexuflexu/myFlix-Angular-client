@@ -18,15 +18,20 @@ export class SynopsisViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Fetch movie synopsis on component initialization
     this.getMovieSynopsis();
   }
 
+  /**
+   * Function to fetch the movie synopsis based on the title from the route
+   */
   getMovieSynopsis(): void {
     const title = this.route.snapshot.paramMap.get('title');
     if (title) {
       this.fetchApiData.getOneMovie(title).subscribe((resp: any) => {
         this.movie = resp;
       }, (error) => {
+        // Display error message if fetching the movie synopsis fails
         this.snackBar.open('Failed to load movie synopsis.', 'OK', {
           duration: 2000
         });
